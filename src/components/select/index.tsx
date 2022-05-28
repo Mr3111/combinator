@@ -1,9 +1,11 @@
 import { Select as BaseSelect } from "antd";
 import { FC } from "react";
+import {useCart} from "../../recoil/hooks/useCart"
 
 const { Option } = BaseSelect;
 
 interface SelectProps {
+  id: string;
   placeholder?: string;
   onChange?: (value: string) => void;
   onSearch?: (value: string) => void;
@@ -14,8 +16,9 @@ interface SelectProps {
   }>;
 }
 
-const Select: FC<SelectProps> = ({ placeholder = "Select an option", options, onChange, onSearch }) => (
-  <BaseSelect
+const Select: FC<SelectProps> = ({ id, placeholder = "Select an option", options, onChange, onSearch }) => {
+  const [_, addItem] = useCart();
+  return (<BaseSelect
     showSearch
     placeholder={placeholder}
     optionFilterProp="children"
@@ -30,7 +33,7 @@ const Select: FC<SelectProps> = ({ placeholder = "Select an option", options, on
         {label}
       </Option>))
     }
-  </BaseSelect>
-);
+  </BaseSelect>)
+};
 
 export default Select;

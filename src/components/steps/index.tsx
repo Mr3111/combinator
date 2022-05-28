@@ -2,6 +2,8 @@ import { Button, message, Steps } from "antd";
 import { useState } from "react";
 import "./styles.scss";
 import Select from "../select";
+import { SmileOutlined } from "@ant-design/icons";
+import Summary from "../summary";
 
 const { Step } = Steps;
 const steps = [
@@ -9,6 +11,7 @@ const steps = [
     title: "Frontend",
     // description: 'Select a frontend framework',
     content: <Select
+      id="fe"
       options={[
         { key: "1", value: "react", label: "React" },
         { key: "2", value: "angular", label: "Angular" },
@@ -26,6 +29,7 @@ const steps = [
     title: "Backend",
     // description: 'Select a backend framework',
     content: <Select
+      id="be"
       options={[
         { key: "1", value: "node", label: "Node.js" },
         { key: "2", value: "spring", label: "Spring Boot" },
@@ -43,18 +47,40 @@ const steps = [
     title: "Database",
     // description: 'Select a database',
     content: <Select
+      id="db"
       options={[
         { key: "1", value: "mysql", label: "MySQL" },
         { key: "2", value: "mongo", label: "MongoDB" },
         { key: "3", value: "prisma", label: "Prisma" },
         { key: "5", value: "redis", label: "Redis" },
       ]}
-      placeholder={'Select a database'}
+      placeholder={"Select a database"}
       onChange={(value) => {
         message.success(`You have selected ${value}`);
       }
       }
     />,
+  },
+  {
+    title: "Deployment",
+    content: <Select
+      id="de"
+      options={[
+        { key: "1", value: "github", label: "Github Actions" },
+        { key: "2", value: "azure", label: "Azure Pipelines" },
+        { key: "3", value: "aws", label: "AWS" },
+      ]}
+      placeholder={"Select a deployment strategy"}
+      onChange={(value) => {
+        message.success(`You have selected ${value}`);
+      }
+      }
+    />,
+  },
+  {
+    title: "Done",
+    icon: <SmileOutlined />,
+    content: <Summary />,
   },
 ];
 
@@ -73,7 +99,7 @@ const AppSteps = () => {
     <>
       <Steps current={current}>
         {steps.map((item) => (
-          <Step key={item.title} title={item.title} />
+          <Step key={item.title} title={item.title} icon={item.icon}/>
         ))}
       </Steps>
       <div className="steps-content">{steps[current].content}</div>
