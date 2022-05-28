@@ -16,7 +16,7 @@ export default function App() {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["2"]}
+          defaultSelectedKeys={["1"]}
           items={[{
               key: "1",
               label: "Home",
