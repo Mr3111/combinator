@@ -12,7 +12,7 @@ export default function App() {
   return (
     <Layout className="layout">
       <Header>
-        <img src="public/Aerothon-logo.png" className="logo" alt="logo" />
+        <img src="/Aerothon-logo.png" className="logo" alt="logo" />
         <Menu
           theme="dark"
           mode="horizontal"
